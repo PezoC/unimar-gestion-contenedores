@@ -1,0 +1,93 @@
+<h2>
+  {{
+  contenedor.id
+  ? 'Editar Contenedor'
+  : 'Nuevo Contenedor'
+  }}
+</h2>
+
+<div *ngIf="errorMessage" class="error-message">
+  {{ errorMessage }}
+</div>
+
+<form class="contenedor-form">
+
+  <div class="form-grid">
+
+    <div class="form-group">
+      <label>Código Contenedor</label>
+
+      <input type="text" [(ngModel)]="contenedor.codigo_ISO" name="codigo_ISO">
+    </div>
+
+    <div class="form-group">
+      <label>Peso Vacío (Tara)</label>
+
+      <input type="number" [(ngModel)]="contenedor.peso_vacio" name="peso_vacio">
+    </div>
+
+    <div class="form-group">
+      <label>Peso Bruto</label>
+
+      <input type="number" [(ngModel)]="contenedor.peso_bruto" name="peso_bruto">
+    </div>
+
+    <div class="form-group">
+      <label>Estado</label>
+
+      <select [(ngModel)]="contenedor.estado" (change)="onEstadoChange()" name="estado">
+
+        <option value="Disponible">
+          Disponible
+        </option>
+
+        <option value="Inmovilizado (Aduanas/Senasa)">
+          Inmovilizado (Aduanas/Senasa)
+        </option>
+
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Ubicación</label>
+
+      <input type="text" [(ngModel)]="contenedor.ubicacion_patio" name="ubicacion_patio"
+        [disabled]="contenedor.estado ==='Inmovilizado (Aduanas/Senasa)'">
+    </div>
+
+    <div class="form-group">
+      <label>Viaje</label>
+
+      <input type="text" [(ngModel)]="contenedor.viaje_asignado" name="viaje_asignado"
+        [disabled]="contenedor.estado ==='Inmovilizado (Aduanas/Senasa)'">
+    </div>
+
+    <div class="form-group switch-group">
+
+      <label>
+
+        Autorizar Salida
+
+      </label>
+
+      <label class="switch">
+
+        <input type="checkbox" [(ngModel)]="contenedor.autorizar_salida" name="autorizar_salida" [disabled]="contenedor.estado === 'Inmovilizado (Aduanas/Senasa)'">
+
+        <span class="slider"></span>
+
+      </label>
+
+    </div>
+
+  </div>
+
+  <button type="button" (click)="save()">
+    {{
+    contenedor.id
+    ? 'Actualizar'
+    : 'Guardar'
+    }}
+  </button>
+
+</form>

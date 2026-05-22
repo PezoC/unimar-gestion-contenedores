@@ -1,0 +1,96 @@
+<h2>Lista de Contenedores UNIMAR</h2>
+
+<table>
+
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Código</th>
+      <th>Peso Vacío (Tara)</th>
+      <th>Peso Bruto</th>
+      <th>Estado</th>
+      <th>Ubicación</th>
+      <th>Viaje</th>
+      <th>Salida</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    @if (contenedores.length > 0) {
+
+    @for (
+    contenedor of contenedores;
+    track contenedor.id
+    ) {
+
+    <tr>
+
+      <td>{{contenedor.id}}</td>
+
+      <td>{{contenedor.codigo_ISO}}</td>
+
+      <td>{{contenedor.peso_vacio}}</td>
+
+      <td>{{contenedor.peso_bruto}}</td>
+
+      <td>{{contenedor.estado}}</td>
+
+      <td>{{contenedor.ubicacion_patio}}</td>
+
+      <td>{{contenedor.viaje_asignado}}</td>
+
+      <td>
+
+        <span [class.badge-success]="
+              contenedor.autorizar_salida
+            " [class.badge-danger]="
+              !contenedor.autorizar_salida
+            ">
+
+          {{
+
+          contenedor.autorizar_salida
+
+          ? 'Autorizada'
+
+          : 'Bloqueada'
+
+          }}
+
+        </span>
+
+      </td>
+
+      <td>
+
+        <button class="btn-editar" (click)="editar(
+              contenedor
+            )">
+
+          Editar
+
+        </button>
+
+      </td>
+
+    </tr>
+    }
+
+    } @else {
+
+    <tr>
+
+      <td colspan="9" class="sin-registros">
+
+        No existen registros de contenedores
+
+      </td>
+
+    </tr>
+    }
+
+  </tbody>
+
+</table>
