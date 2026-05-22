@@ -23,12 +23,10 @@ Aplicación fullstack para la gestión y mantenimiento de contenedores marítimo
 
 - Registro de contenedores
 - Actualización de contenedores
+- Listado de contenedores
 - Validaciones de negocio
 - Modal dinámico
 - Gestión de autorización de salida
-- Listado de contenedores
-- Registro de contenedores
-- Actualización de contenedores
 
 ---
 
